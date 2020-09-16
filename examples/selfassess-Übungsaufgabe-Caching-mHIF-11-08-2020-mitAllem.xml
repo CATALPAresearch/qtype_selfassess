@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Selbsttest-Übungsaufgabe Zeitvorteil durch Caching</title>
+
+<question>Angenommen, ein Schreib-/Lesezugriff auf den Cache ist neunmal so schnell wie ein Zugriff auf den Hauptspeicher. Welchen Zeitvorteil ergibt die Verwendung eines Cache nach dem oben beschriebenen Algorithmus, wenn bei 80 % aller Zugriffe die gesuchten Daten im Cache gefunden werden?</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte. </text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Sei c die Zeitdauer eines Schreib-/Lesezugriffs auf den Cache; dann fällt in 80% aller Datenzugriffe ein Zeitaufwand von c Einheiten an. Bei den übrigen 20% der Fälle muss auf den Hauptspeicher zugegriffen werden, das kostet zusätzlich 9c Zeiteinheiten. In diesen Fällen muss anschliessnd das Datum noch im Cache abgelegt werden, dies benötigt noch einmal c Zeiteinheiten. Im Mittel entsteht also  bei Verwendung des Cache ein Zeitaufwand in Höhe von (80/100)c + (20/100)(9c+2c) = ((80+220)/100)c = 3c gegenüber 9c beim Betrieb ohne Cache. Bei den hier zugrunde gelegten Werten geht es mit Cache also drei mal so schnell.</solution>
+
+<max_score>10</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Meine Antwort berücksichtigt bei der Ermittlung des Zeitaufwands bei Nutzung des Caches sowohl den Fall, dass Zugriffe im Cache liegen als auch den Fall, das Zugriffe nicht im Cache liegen. Sie berücksichtigt  dabei die dafür unterschiedlichen Zeitaufwände bei der Ermittlung des gemittelten Aufwands bei Nutzung des Caches und vergleicht diese Zeitdauer mit der Zeitdauer bei Zugriff ohne Cache.</answer>
+            <grade>100</grade>
+	</answ>
+        <answ>
+            <answer>Ich habe  bei der Ermittlung des Zeitaufwands bei Nutzung des Caches nicht zwischen dem Fall, dass Zugriffe im Cache liegen, und dem Fall, das Zugriffe nicht im Cache liegen, unterschieden.</answer>
+            <grade>-20</grade>
+        </answ>
+        <answ>
+            <answer>Ich habe bei der  Ermittlung des Zeitaufwands bei Nutzung des Caches nicht berücksichtigt, dass 80% der Zugriffe im Cache liegen und deshalb jeweils eine Zeitdauer c  dauern.</answer>
+            <grade>-20</grade>
+        </answ>
+        <answ>
+            <answer>Ich habe bei der  Ermittlung des Zeitaufwands bei Nutzung des Caches nicht berücksichtigt, dass 20% der Zugriffe nicht im Cache liegen und deshalb zusätzlichen Aufwand für den Zugriff auf Hauptspeicher benötigen: 20% (c Lesen auf Cache + 9 c  Hauptspeicherzugriff + c für Schreiben in Cache).</answer>
+            <grade>-20</grade>
+        </answ>
+	<answ>
+            <answer>Ich habe die mittlere Zeitdauer bei Nutzung des Caches nicht oder nur falsch berechnen können.</answer>
+            <grade>-20</grade>
+        </answ>
+	<answ>
+            <answer>Ich habe die mittlere Zeitdauer bei Nutzung des Caches nicht mit der Zeitdauer des Zugriffs ohne Cache verglichen, oder die  Zeitdauer des Zugriffs ohne Cache falsch berechnet.</answer>
+            <grade>-20</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="100000" fbid="0"/>
+	<rule clicked="01...." fbid="1"/>
+	<rule clicked="0.1..." fbid="2"/>
+	<rule clicked="0..1.." fbid="3"/>
+	<rule clicked="0...1." fbid="4"/>
+	<rule clicked="0....1" fbid="5"/>
+   </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                Um die volle Punktzahl zu erreichen, müssen Sie bei der Ermitlung des Zeitvorteils alle Fälle unterscheiden, bei denen unterschiedliche Zeitaufwände vorliegen: Cache hit und Cache miss. Erstellen Sie sich doch ein Lösungsschema für die Aufwandsberechnung, um sich das Vorgehen besser einzuprägen.
+           </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 nach. Hier werden die Fälle Cache hit und Cache miss mit ihrem jeweiligen Aufwand behandelt.</linktext>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Sie sollten den Zeitaufwand für jeden Fall korrekt bestimmen können. Um sich das Vorgehen besser einzuprägen hilft auch das Erstellen von Lernkarten. 
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-caching</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 nach und betrachten Sie den Aufwand für den Fall Cache hit.</linktext> 
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Sie sollten den Zeitaufwand für jeden Fall korrekt bestimmen können. Um sich das Vorgehen besser einzuprägen hilft auch das Erstellen eines Ablaufdiagramms.
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-caching</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 nach und betrachten Sie den Aufwand für den Fall Cache miss.</linktext> 
+            </link>    
+        </feedback>
+	<feedback fbid="4">
+            <text>
+                Sie sollten die gemittelte Zeitdauer für den Zugriff bei Nutzung des Caches ermitteln können: 0,8c + 0,2(c+8c+c) = 3c. Üben Sie die Berechnung für Beispiele, bei denen der Aufwand für die Fälle anders ist.
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 nach und betrachten Sie die Aufwandsermittlung bei Nutzung des Caches.</linktext> 
+            </link>    
+        </feedback>
+	<feedback fbid="5">
+            <text>
+                Sie sollten die  Zeitdauer für den Zugriff ohne Nutzung des Caches ermitteln können: 1,0 9c. Üben Sie die Berechnung für Beispiele, bei denen der Aufwand für  die Fälle anders ist.
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 nach und betrachten Sie die Aufwandsermittlung bei Nutzung ohne Cache.</linktext> 
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

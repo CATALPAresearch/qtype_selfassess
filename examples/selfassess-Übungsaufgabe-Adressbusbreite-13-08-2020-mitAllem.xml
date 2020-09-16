@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Selbsttest-Übungsaufgabe Adressbusbreite</title>
+
+<question>Beim Prozessor 68000 von Motorola beträgt die Wortlänge 2 Byte. Wie breit muss der Adressbus sein – das heißt: aus wie vielen Bits bestehen die Adressen – bei einer Hauptspeicherkapazität von 16 MByte?</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte. </text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Um die Anzahl der Worte der Länge von 2 Byte, die in den gegebenen Hauptspeicher passen, zu ermitteln, müssen Sie die gegebene Hauptspeichergröße durch die Wortlänge teilen. Teilt man 16 MByte in Worte der Länge 2 Byte auf, so entstehen (16 • 2^20) / 2 = 8 • 2^20 = 2^23 Worte.<br> Sie müssen nun bestimmen, wieviele Bit zur Adressierung der notwendigen Anzahl von Worten benötigt werden: 23 Bit genügen zur Adressierung von 2^23 Worten.<br> Die Adressbusbreite muss so groß sein, dass man die Bitfolge jeder Adresse, die zum Zugriff auf ein Wort im Speicher nötig ist, auf die Busleitungen abbilden kann. Bei 23 Bit langen Adressen sind deshalb 23 Leitungen nötig.</solution>
+
+<max_score>3</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Teilt man 16 MByte in Worte der Länge 2 Byte auf, so entstehen (16 • 2^20) / 2 = 8 • 2^20 = 2^23 Worte.</answer>
+            <grade>33.33333</grade>
+	</answ>
+        <answ>
+            <answer>23 Bit genügen zur Adressierung von 2^23 Worten.</answer>
+            <grade>33.33333</grade>
+        </answ>
+        <answ>
+            <answer>Die Adressbusbreite ist daher 23 Bit.</answer>
+            <grade>33.33333</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="111" fbid="0"/>
+	<rule clicked="0.." fbid="1"/>
+	<rule clicked=".0." fbid="2"/>
+	<rule clicked="..0" fbid="3"/>
+
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                Um die Anzahl der Worte der Länge von 2 Byte, die in den gegebenen Hauptspeicher passen, zu ermitteln, müssen Sie die gegebene Hauptspeichergröße durch die Wortlänge teilen.
+           </text>
+            <link>    
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Sie müssen nun bestimmen, wieviele Bit zur Adressierung der notwendigen Anzahl von Worten benötigt werden. Wenn ihr Ergebnis von 23 Bit abweicht, dann liegt entweder ein Rechenfehler vor, oder es fehlt das Verständnis, dass 16 Mbyte als 2^16 dargestellt werden können, oder es liegt ein Divisionsfehler vor, oder das Verständnis, dass man die Zahl 8 als 2^3 schreiben kann und bei Potenzen gleicher Basis (hier: 2) die Exponenten addiert werden können, fehlt.   
+            </text>
+            <link>    
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Die Adressbusbreite muss so groß sein, dass man die Bitfolge jeder Adresse, die zum Zugriff auf ein Wort im Speicher nötig ist, auf die Busleitungen abbilden kann.  Bei 23 Bit langen Adressen sind deshalb 23 Leitungen nötig.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Selbsttest-Übungsaufgabe Plattenzugriff</title>
+
+<question>Wir betrachten ein Plattenlaufwerk mit nur einer einzelnen Platte; die Spuren sind mit 0 beginnend von außen nach innen durchnummeriert. Wenn dafür nun mehrere Aufträge vorliegen, kann man sie nach folgenden Strategien abarbeiten:
+<ul>
+    <li>FCFS (first-come, first-served) bearbeitet die Aufträge in der Reihenfolge ihres Eingangs.</li>
+    <li>SSTF (shortest-seek-time-first) bearbeitet jeweils denjenigen Auftrag als nächsten, dessen Spur der momentanen Position des Schreib-/Lesekopfs am nächsten liegt.</li>
+    <li>SCAN bewegt den Kopf abwechselnd von außen nach innen und von innen nach außen über die gesamte Platte und führt dabei die Aufträge aus, deren Spuren gerade überquert werden.</li>
+</ul>
+
+Angenommen, es sind Zugriffsaufträge für Sektoren in den Spuren 32, 185, 80, 126, 19, 107 in dieser Reihenfolge eingegangen.<br>
+Der Kopf steht anfangs auf Spur 98 und bewegt sich im Falle der SCAN-Strategie gerade nach außen.<br>
+Welche Distanz muss der Kopf bei Anwendung der drei Strategien jeweils insgesamt zurücklegen, bis alle Aufträge erledigt sind?</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte. </text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Bei der Strategie FCFS ergibt sich als Gesamtdistanz (98 − 32) + (185 − 32) + · · · + (107 − 19) = 565.<br>
+Wendet man die Strategie SSTF an, so werden nacheinander die Spuren 98, 107, 126, 80, 32, 19, 185 besucht, was eine Gesamtdistanz von 301 ergibt.<br> 
+Bei einem SCAN, der von Spur 98 zunächst nach außen führt bis zur Spur 0 und dann wieder nach innen bis Spur 185, beträgt die Gesamtdistanz 283.<br> Bei diesem Beispiel schneidet also die Strategie SCAN am besten ab.<br> In der Praxis sind die Verhältnisse komplizierter, weil nicht alle Schreib-/Leseaufträge im Voraus bekannt sind; vielmehr treffen immer neue Aufträge ein, während die ersten bereits abgearbeitet werden.</solution>
+
+<max_score>8</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Bei der Strategie FCFS ergibt sich als Gesamtdistanz 565.</answer>
+            <grade>25</grade>
+	</answ>
+        <answ>
+            <answer>Wendet man die Strategie SSTF an, so ergibt sich eine Gesamtdistanz von 301.</answer>
+            <grade>25</grade>
+        </answ>
+        <answ>
+            <answer>Bei einem SCAN beträgt die Gesamtdistanz 283.</answer>
+            <grade>25</grade>
+        </answ>
+        <answ>
+            <answer>Bei diesem Beispiel schneidet die Strategie SCAN am besten ab.</answer>
+            <grade>25</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="1111" fbid="0"/>
+	<rule clicked="0..." fbid="1"/>
+	<rule clicked=".0.." fbid="2"/>
+	<rule clicked="..0." fbid="3"/>
+	<rule clicked="1110" fbid="4"/>
+	<rule clicked="0110" fbid="5"/>
+	<rule clicked="1010" fbid="5"/>
+	<rule clicked="1100" fbid="5"/>
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                 Sie scheinen die FCFS Strategie fehlerhaft angewendet zu haben oder haben einen Rechenfehler gemacht:  Bei der Strategie FCFS ergibt sich als Gesamtdistanz (98 − 32) + (185 − 32) + · · · + (107 − 19) = 565.
+           </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über die FCFS Strategie nach.</linktext>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Sie scheinen die SSTF Strategie fehlerhaft angewendet zu haben, oder es liegt ein Rechenfehler vor. Wendet man die Strategie SSTF an, so werden nacheinander die Spuren 98, 107, 126, 80, 32, 19, 185 besucht, was eine Gesamtdistanz von 301 ergibt.   
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über die SSTF Strategie nach.</linktext>
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Sie scheinen die SCAN Strategie fehlerhaft angewendet zu haben oder es liegt ein Rechenfehler vor. Bei einem SCAN, der von Spur 98 zunächst nach außen führt bis zur Spur 0 und dann wieder nach innen bis Spur 185, beträgt die Gesamtdistanz 283.
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über die SCAN Strategie nach.</linktext>
+            </link>    
+        </feedback>
+	<feedback fbid="4">
+            <text>
+                Der Vergleich der Gesamtdistanzen der drei Stretegien ist falsch. Überprüfen Sie das noch einmal.
+            </text>
+            <link>    
+		    <linkref></linkref>
+		    <linktext></linktext>
+            </link>    
+        </feedback>
+	<feedback fbid="5">
+            <text>
+                Da sie bei der Berechung der Gesamtdistanz bei mindestens einer der drei Stretegien einen Fehler gemacht haben, ist die Bestimmung der besten Strategie für dieses Beispiel potenziell ein Folgefehler. Korrigieren Sie die Gesamtdistanz der falsch bestimmten Strategie und vergelichen Sie die Gesamtdistanzen noch einmal.
+            </text>
+            <link>    
+		    <linkref></linkref>
+		    <linktext></linktext>
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

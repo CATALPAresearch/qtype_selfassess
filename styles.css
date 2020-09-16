@@ -1,0 +1,113 @@
+/* Editing specific_feedback. */
+.que.selfassess .specific_feedback {
+    color: #104f0f;    
+    background-color: #ffffff;
+    border: 1px solid red;
+    padding: 10px 10px 10px 10px; 
+    text-indent: 0;
+    hyphens: auto;
+}
+
+/* Editing specific_feedback text. */
+.que.selfassess .specific_feedback p {
+	padding-left: 5px;
+	hyphens: auto;
+	text-indent: 0;
+} 
+
+/* Editing specific_feedback link. */
+.que.selfassess .specific_feedback a {
+	color: #00f;
+	padding-left: 20px;
+}
+
+/* Editing my_prompt. */
+.que.selfassess .my_prompt {
+  font-weight: bold;
+  color: #5156c6; 
+  hyphens: auto;
+}
+
+/* Editing hyperlink to solution. */
+.que.selfassess .solutionurl {
+  padding-left: 45px;
+  padding-top: 5px;
+}
+
+/* Editing hyperlink to solution. */
+.que.selfassess .solutionurl a {
+  font-weight: bold;
+  color: #10ae10;
+}
+
+/* Editing submit btn btn-secondary. */
+.que.selfassess .btn-secondary {
+  font: bold;
+  color: #ffffff; 
+  background-color: #2e87e0;  
+}
+
+.que.selfassess .answer div.r0,
+.que.selfassess .answer div.r1 {
+    padding: 0.3em 0 0.3em 25px;
+    text-indent: -25px;
+}
+
+.que.selfassess .answer div.r0 label,
+.que.selfassess .answer div.r1 label, {
+    /* In Chrome and IE, the text-indent above is applied to any embedded table
+       cells or <li>s, which screws up the intended layout. This fixes it again. */
+    text-indent: 0;
+    hyphens: auto;
+}
+
+.que.selfassess .answer div.r0 input,
+.que.selfassess .answer div.r1 input {
+    margin: 0 5px;
+    padding: 0;
+    width: 15px;
+}
+
+/* Editing form. */
+body#page-question-type-selfassess div[id^=fitem_id_][id*=answer_] {
+    background: #eee;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border: 1px solid #bbb;
+    border-bottom: 0;
+}
+
+body#page-question-type-selfassess div[id^=fitem_id_][id*=answer_] .fitemtitle {
+    font-weight: bold;
+}
+
+body#page-question-type-selfassess div[id^=fitem_id_] .fitemtitle {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 6px;
+    padding-right: 0;
+}
+
+body#page-question-type-selfassess div[id^=fitem_id_][id*=fraction_] {
+    background: #eee;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border: 1px solid #bbb;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+body#page-question-type-selfassess div[id^=fitem_id_][id*=feedback_] {
+    font: #f00;
+    background: #eee;
+    margin-bottom: 2em;
+    margin-top: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border: 1px solid #bbb;
+    border-top: 0;
+}

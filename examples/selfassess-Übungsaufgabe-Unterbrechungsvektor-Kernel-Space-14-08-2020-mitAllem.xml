@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Unterbrechungsvektor im Kernel Space</title>
+
+<question>Warum darf der Unterbrechungsvektor nicht im Adressraum eines Anwendungsprozesses liegen??</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte.</text>
+	<link>
+		<linkref></linkref>
+		<linktext></linktext>
+	</link>
+</instruction>
+
+<solution>Läge der Unterbrechungsvektor im Adressraum eines Anwendungsprozesses, so könnte der Anwendungsprogrammierer die Anfangsadresse einer Unterbrechungsroutine so ändern, dass, wenn diese Unterbrechung eintritt, statt der originalen Unterbrechungsroutine des Betriebssystems ein Teil des Benutzerprogramms ausgeführt wird. Die CPU wäre dann im Systemmodus, und der Anwendungsprogrammierer/Benutzer hätte damit die vollständige Herrschaft über den Rechner erlangt.</solution>
+
+<max_score>8</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Läge der Unterbrechungsvektor im Adressraum eines Anwendungsprozesses, so könnte der Anwendungsprogrammierer die Anfangsadresse einer Unterbrechungsroutine so ändern, dass, wenn diese Unterbrechung eintritt, statt der originalen Unterbrechungsroutine des Betriebssystems ein Teil des Benutzerprogramms ausgeführt wird.</answer>
+            <grade>33.33333</grade>
+	</answ>
+        <answ>
+            <answer>Wenn der Anwendungsprogrammierer die Anfangsadresse der Unterbechungsroutine beliebig ändern könnte, dann wäre die CPU beim Sprung zu der geänderten Adresse im Systemmodus.</answer>
+            <grade>33.33333</grade>
+        </answ>
+        <answ>
+            <answer>Der Anwendungsprogrammierer/Benutzer hätte damit die vollständige Herrschaft über den Rechner erlangt. Das widerspricht der Anforderung der Beschränkung der Ausführung priviligierter Befehle auf das Betriebssystem.</answer>
+            <grade>33.33333</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="111" fbid="0"/>
+	<rule clicked="0.." fbid="1"/>
+	<rule clicked=".0." fbid="2"/>
+	<rule clicked="..0" fbid="3"/>
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                 Sie scheinen die Rolle des Unterbrechungsvektors bei der Unterbrechungsverarbeitung als „Sprungverteiler“ zu der gewünschten Unterbrechungsbehandlungsroutine übersehen zu haben.
+           </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-unterbrechungsnummer</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über die Unterbrechungsnummer nach.</linktext>
+            </link>  
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-unterbrechungsvektor</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über den Unterbrechungsvektor nach.</linktext>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Sie scheinen den Übergang zum Systemmodus bei Beginn der Unterbrechungsbehandlung übersehen zu haben. Dieser erlaubt den Zugriff auf beliebige Adressen und die Ausführung privilegierter Befehle.   
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-modusumschaltung</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über die Modusumschaltung nach.</linktext>
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Sie scheinen die Einschränkung der erlaubten Instruktionen im Benutzermodus und die Ausführbarkeit aller kritischen Instruktionen sowie die Aufhebung des Speicherschutzes im Systemmodus vergessen zu haben.
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-modus</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext KE1 den Abschnitt über den Modus nach.</linktext>
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

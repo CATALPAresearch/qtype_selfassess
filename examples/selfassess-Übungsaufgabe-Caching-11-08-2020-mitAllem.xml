@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Selbsttest-Übungsaufgabe Cache für Seitentabelle</title>
+
+<question> Da die Seitentabellen oft recht groß werden, schnelle Hardwareregister jedoch teuer sind, hält man oft die gesamte Seitentabelle im Hauptspeicher und sieht im Prozessor einen Registersatz als Cache-Speicher für einige Einträge der Seitentabelle vor. Angenommen, die Zugriffszeiten für einen solchen Cache beträgt 20 ns und für den Hauptspeicher 100 ns. Um wieviel Prozent steigt die durchschnittliche Zeit für einen lesenden und schreibenden Zugriff gegenüber einem System ohne Paging, wenn die Trefferrate für den Cache 80 % (98 %) beträgt?</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte. </text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Ein Speicherzugriff dauert 120 ns, wenn sich die Seitenrahmennummer im Cache befindet: 20 ns für den Cachezugriff plus 100 ns für den Zugriff auf das Datum im Hauptspeicher. Liegt die Seitenrahmennummer nicht im Cache, so muss diese erst aus dem Hauptspeicher gelesen werden, was die Zugriffzeit um 100 ns auf 220 ns erhöht. Natürlich muss die Seitenrahmennummer noch in den Cache geschrieben werden. Also beträgt die Zugriffszeit insgesamt 240 ns.
+Bei einer Trefferrate von 80 % kann die Seitenrahmennummer mit einer Wahrscheinlichkeit von 0.8 aus dem Cache gelesen werden, mit einer Wahrscheinlichkeit von 0.2 muss aus dem Hauptspeicher gelesen werden. Insgesamt ergibt sich für die durchschnittliche Zugriffszeit
+0.8 · 120 ns + 0.2 · 240 ns = 144 ns,
+also eine Steigerung um 44 % gegenüber dem Speicherzugriff von 100 ns für ein System ohne Paging. Für eine Trefferrate von 98 % ergibt sich
+0.98 · 120 ns + 0.02 · 240 ns = 122.4 ns;
+hier also eine Zunahme um 22.4 %.</solution>
+
+<max_score>10</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Wenn sich die Seitenrahmennummer im Cache befindet dauert ein Speicherzugriff 120 ns: 20 ns für den Cachezugriff plus 100 ns für den Zugriff auf das Datum im Hauptspeicher.</answer>
+            <grade>16</grade>
+	</answ>
+        <answ>
+            <answer>Wenn sich die Seitenrahmennummer nicht im Cache befindet muss diese zuerst aus dem Hauptspeicher gelesen (dauert 100 ns) und in den Cache geschrieben werden (dauert weitere 120 ns). Insgesamt sind in diesem Fall also 240 ns erforderlich.</answer>
+            <grade>16</grade>
+        </answ>
+        <answ>
+            <answer>Wenn 80% der Zugriffe im Cache liegen und jeweils eine Zeitdauer von 120 ns  dauern, dann verursacht dies einen Aufwand von 0.8 · 120 ns.</answer>
+            <grade>16</grade>
+        </answ>
+        <answ>
+            <answer>Wenn 20% der Zugriffe nicht im Cache liegen und jeweils eine Zeitdauer von 240 ns  dauern, dann verursacht dies einen Aufwand von 0.2 · 240 ns.</answer>
+            <grade>16</grade>
+        </answ>
+	<answ>
+            <answer>Im Mittel ergibt sich eine Zeitdauer von 144 ns bei Verwendung des Cache. Dies entspricht einer Steigerung von 44 % gegenüber dem Speicherzugriff von 100 ns für ein System ohne Paging.</answer>
+            <grade>16</grade>
+        </answ>
+	<answ>
+            <answer>Eine Trefferrate von 98 % ergibt einen Zeitaufwand von 0.98 · 120 ns + 0.02 · 240 ns = 122.4 ns, also eine Zunahme um 22.4 %.</answer>
+            <grade>20</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="111111" fbid="0"/>
+	<rule clicked="0....." fbid="1"/>
+	<rule clicked=".0...." fbid="2"/>
+	<rule clicked="1.0..." fbid="3"/>
+	<rule clicked="010..." fbid="4"/>
+	<rule clicked=".1.0.." fbid="3"/>
+	<rule clicked=".0.0.." fbid="5"/>
+	<rule clicked="11110." fbid="6"/>
+	<rule clicked="111110" fbid="7"/>
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                Unterscheidung der beiden Fälle (Cache Hit und Cache miss) nicht gelungen bzw. die Behandlung des Cache Hit falsch gerechnet
+           </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-cache</linkref>
+		    <linktext>Verweis auf Cache in KE1</linktext>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Behandlung des “Cache miss“ fehlt oder Aufwand falsch berechnet 
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-caching</linkref>
+		    <linktext>Verweis auf Caching in KE1</linktext> 
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Es liegt wohl ein Berechnungsfehler vor (z.B. Prozentzahlen falsch umgerechnet: 80% = 0.8, 20% = 0.2)
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="4">
+            <text>
+                Folgefehler wegen der fehlerhaften Berechnung des Aufwands für den Fall Cache Hit.
+            </text>
+            <link>    
+		    <linkref></linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="5">
+            <text>
+                Folgefehler wegen der fehlerhaften Berechnung des Aufwands für den Fall Cache Miss.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="6">
+            <text>
+                Entweder ist die Bestimmung des Aufwands für reinen Hauptspeicherzugriff (ohne Cache: 100 ns) falsch oder der Vergleich der beiden Werte ist zum falschen Ergebnis gelangt. Der bei Paging anfallende Wert ist natürlich höher (144 ns) als ohne Paging (100 ns), dafür gibt es keine externe Fragmentierung und der logische Adressraum kann zur Laufzeit einfach erweitert werden.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="7">
+            <text>
+                Entweder liegt ein Berechnungsfehler vor oder der Vergleich zum Aufwand für reinen Hauptspeicherzugriff (ohne Cache: 100 ns) ist falsch.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

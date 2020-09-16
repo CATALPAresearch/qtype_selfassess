@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Wartezeit SJF</title>
+
+<question>Gegeben sei eine feste Menge von endlich vielen Prozessen mit bekannten Rechenzeiten. Beweisen Sie, dass SJF die Gesamtwartezeit minimiert, also die Summe aller Wartezeiten der einzelnen Prozesse. Dabei ist die Wartezeit eines Prozesses diejenige Zeit, in der sich der Prozess bis zur Beendigung im Zustand „bereit“ befindet.</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte.</text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Betrachten wir eine Ausführungsreihenfolge, bei der ein langer Prozess L vor einem kurzen Prozess K an die Reihe kommt. Wenn wir die beiden miteinander vertauschen, brauchen alle dazwischen liegenden Prozesse nicht mehr so lange zu warten. Für L verlängert sich bei diesem Tausch zwar die Wartezeit, aber die Verkürzung der Wartezeit von K ist größer! Alle übrigen Prozesse sind nicht betroffen. Also verkürzt solch ein Tausch die Gesamtwartezeit. Jede von SJF verschiedene Ausführungsreihenfolge lässt sich also noch verbessern; folglich ist SJF optimal.</solution>
+
+<max_score>12</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Sie haben ihre Lösung mit der Betrachtung der Ausführungsreihenfolge, bei der ein langer Prozess L vor einem kurzen Prozess K an die Reihe kommt, bekommen.</answer>
+            <grade>16,66667</grade>
+	</answ>
+        <answ>
+            <answer>In ihrer Lösung argumentieren Sie, dass die Vertauschung von L und K dazu führt, dass alle dazwischenliegenden Prozesse nicht mehr so lange zu warten brauchen.</answer>
+            <grade>16.66667</grade>
+        </answ>
+        <answ>
+            <answer>In ihrer Lösung argumentieren Sie, dass sich für L bei diesem Tausch zwar die Wartezeit verlängert, aber die Verkürzung der Wartezeit von K größer ist.</answer>
+            <grade>16.66667</grade>
+        </answ>
+        <answ>
+            <answer>In ihrer Lösung argumentieren Sie, dass alle übrigen Prozesse von diesem Tausch nicht betroffen sind.</answer>
+            <grade>16.66667</grade>
+        </answ>
+        <answ>
+            <answer>In ihrer Lösung argumentieren Sie, dass solch ein Tausch also die Gesamtwartezeit verkürzt.</answer>
+            <grade>16.66667</grade>
+        </answ>
+        <answ>
+            <answer>In ihrer Lösung argumentieren Sie, dass zum Schluss, dass jede von SJF verschiedene Ausführungsreihenfolge sich noch verbessern lässt; folglich ist SJF optimal.</answer>
+            <grade>16.66667</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="111111" fbid="0"/>
+	<rule clicked="0....." fbid="1"/>
+	<rule clicked=".0...." fbid="2"/>
+	<rule clicked="..0..." fbid="3"/>
+	<rule clicked="...0.." fbid="4"/>
+	<rule clicked="....0." fbid="5"/>
+	<rule clicked=".....0" fbid="6"/>
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                 Der Ausgangspunkt ihrer Lösung scheint nicht klar zu sein: wenn man die Minimalität einer Strategie zur Wartezeitminimierung beweisen will, dann muss man mit einer Ausführungsreihenfolge beginnen, die noch nicht optimal ist.
+           </text>
+            <link>
+		    <linkref> </linkref>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Für den Beweis fehlt der Schritt, dass wir für die Vertauschung zeigen, dass durch das Vorziehen kürzerer Jobs die Gesamtwartezeit sinkt.   
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                 Für den Beweis fehlt der Schritt, dass Sie zeigen, dass die Vorteile der Vertauschung die Nachteile (längere Wartezeit des langen Jobs) überwiegen.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="4">
+            <text>
+                 Für den Beweis fehlt der Schritt, dass Sie zeigen, dass die dazwischenliegenden Prozesse wegen des Tauschs nicht länger warten müssen.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="5">
+            <text>
+                 Für den Beweis fehlt der Schritt, dass Sie folgern, dass deshalb die Gesamtwartezeit verkürzt sein muss (die dazwischenliegenden Jobs warten nicht länger, der vorgezogene Job wartet sehr viel weniger, der nach hinten geschobene Job dagegen nur wenig länger).
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+	<feedback fbid="6">
+            <text>
+                 Für den Beweis fehlt der Abschluss. Nutzen Sie die Widerspruchsbeweistechnik: jede von SJF verschiedene Ausführungsreihenfolge lässt sich noch verbessern; folglich ist SJF optimal.
+            </text>
+            <link>    
+		    <linkref> </linkref>
+            </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

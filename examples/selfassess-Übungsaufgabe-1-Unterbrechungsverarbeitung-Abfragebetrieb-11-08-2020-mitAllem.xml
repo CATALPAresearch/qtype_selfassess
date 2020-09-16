@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE selfassess [
+<!ELEMENT selfassess (answer_tree, decision_tree, feedbacktexts)> 
+<!ELEMENT answer_tree (answ)+> 
+<!ELEMENT answ (answer, grade)+> 
+<!ELEMENT answer (#PCDATA)> 
+<!ELEMENT grade (#PCDATA)> 
+<!ELEMENT decision_tree (rule)+> 
+<!ELEMENT rule (#PCDATA)> 
+<!ELEMENT feedbacktexts (feedback)+> 
+<!ELEMENT feedback (text, link*)+> 
+<!ELEMENT text (#PCDATA)> 
+<!ELEMENT link (linkref, linktext?)> 
+<!ELEMENT linkref (#PCDATA)> 
+<!ELEMENT linktext (#PCDATA)> 
+<!ATTLIST rule
+        clicked CDATA #REQUIRED 
+        fbid CDATA #REQUIRED> 
+<!ATTLIST feedback
+	fbid CDATA #REQUIRED> 
+]>
+
+<selfassess>
+ 
+<title>Selbsttest-Übungsaufgabe Unterbrechungsverarbeitung-Abfragebetrieb</title>
+
+<question>Nach jeder Ausführung eines Befehls überprüft die CPU, ob an ihrem Unterbrechungseingang ein Signal angekommen ist. Schleicht sich hier durch die Hintertür der ineffiziente Abfragebetrieb ein, den wir durch Einführung des Unterbrechungsbetriebs eigentlich hatten vermeiden wollen?</question>
+
+<instruction>
+	<text>Bitte überprüfen Sie Ihre Lösung anhand der folgenden Punkte.</text>
+	<link>
+		<linkref></linkref>
+		<linktext>Musterlösung</linktext>
+	</link>
+</instruction>
+
+<solution>Es stimmt zwar, dass beim regelmäßigen Überprüfen des Unterbrechungseingangs ein Abfragebetrieb vorliegt; diese Abfragen erfolgen aber im Innern der CPU und benötigen deshalb viel weniger Zeit als das Lesen des Statusregisters eines Controllers. Denn selbst bei speicherabgebildeter Ein-/Ausgabe werden hierfür mehrere CPU-Befehle benötigt.</solution>
+
+<max_score>9</max_score>
+
+    <answer_tree>
+        <answ>
+	    <answer>Ich habe in meiner Lösung dargestellt, dass beim regelmäßigen Überprüfen des Unterbrechungseingangs ein Abfragebetrieb vorliegt.</answer>
+            <grade>33</grade>
+	</answ>
+        <answ>
+            <answer>Ich habe in meiner Lösung argumentiert, dass diese Form des Abfragebetriebs wegen der CPU-internen Realisierung wesentlich effizienter als z.B. der Zugriff auf das Statusregister eines Controllers ist.</answer>
+            <grade>33</grade>
+        </answ>
+        <answ>
+            <answer>Meine Lösung sagt <b>nicht</b>, dass der Zugriff auf CPU-externe Ressourcen selbst bei speicherabgebildeter Ein-/Ausgabe hierfür mehrere CPU-Befehle erfordert.</answer>
+            <grade>-34</grade>
+        </answ>
+    </answer_tree>
+
+    <decision_tree>	
+	<rule clicked="110" fbid="0"/>
+	<rule clicked="0.." fbid="1"/>
+	<rule clicked=".0." fbid="2"/>
+	<rule clicked="..1" fbid="3"/>
+    </decision_tree>
+
+
+    <feedbacktexts>
+	<feedback fbid="0">
+            <text>
+                Vollständig richtige Antwort. Bravo!
+            </text>
+        </feedback>
+        <feedback fbid="1">
+            <text>
+                Um die volle Punktzahl zu erreichen, müssen Sie in ihrer Lösung berücksichtigen, dass das Prozessorstatuswort im Instruktionszyklus abgefragt wird. Erstellen Sie sich doch ein Ablaufschema, um sich den Ablauf des Instruktionszyklus besser einzuprägen.
+           </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-instruktionszyklus</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext die Passage zum Instruktionszyklus in KE1 nach.</linktext>
+            </link>  
+        </feedback>
+	<feedback fbid="2">
+            <text>
+                Sie sollten in Ihrer Lösung den Begriff der „Ineffizienz des Abfragebetriebs“ deutlicher machen; schneller als einmal im Instruktionszyklus auf Interrupts zu reagieren ist nicht möglich, die Kosten für die CPU-interne Realisierung ist im Vergleich zur Kommunikation mit Geräten außerhalb der CPU deutlich geringer, d.h. effizienter. 
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-interrupt-handling</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext die Passage zur Unterbrechungsbehandlung in KE1 nach.</linktext> 
+            </link>    
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-instruktionszyklus</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext die Passagen zum Instruktionszyklus in KE1 nach.</linktext> 
+            </link>   
+        </feedback>
+	<feedback fbid="3">
+            <text>
+                Um einen Zusatzpunkt zu erreichen, müssen Sie in ihrer Lösung eine Verbindung zum Aufwand für speicherabgebildete Ein-/Ausgabe (als alternative Realisierungsmöglichkeit für den Zugriff auf ein externes Signal, z.B. im Statusregister eines Geräts) darstellen. 
+            </text>
+            <link>    
+		    <linkref>https://aple.fernuni-hagen.de/mod/page/view.php?id=248#feedback-memory-mapped-io</linkref>
+		    <linktext>Lesen Sie noch einmal im Kurstext die Passage zum Memory-mapped IO in KE1 nach.</linktext>             </link>    
+        </feedback>
+    </feedbacktexts>
+
+</selfassess>

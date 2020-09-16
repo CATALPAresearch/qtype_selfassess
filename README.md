@@ -8,10 +8,11 @@ In an optional first step a self composed answer to the question is required; in
 This version can be used with Moodle 3.5 version and above.
 
 ## Installation
-* change into the directory `cd <my-moodle>/question/type`
+
+* Change into the directory `cd <my-moodle>/question/type`
 * `git clone https://github.com/D2L2/qtype_selfassess`
-* rename the resulting folder into `selfassess` if necessary
-* open the administration panel of moodle in order to install the plugin.
+* Rename the resulting folder into `selfassess` if necessary
+* Open the administration panel of moodle in order to install the plugin.
 
 ## Description
 

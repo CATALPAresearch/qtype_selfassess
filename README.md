@@ -1,7 +1,7 @@
 SelfAssess Question Type
 ----------------------------
 
-This is a question type plugin for Moodle self-assessments was created by Karin Steinkohl and Marc Burcharct, 2020 FernUniversität Hagen. It is a prototypical software that is still under development. 
+This is a question type plugin for Moodle self-assessments was created by Karin Steinkohl and Marc Burcharct, 2020 FernUniversität Hagen. It is a prototypical software that is still under development. The plugin is licensed under GNU GPL-3.
 
 In an optional first step a self composed answer to the question is required; in a second step checkboxes with pre-formulated statements must be chosen. Based on the respective selection an appropriate feedback will be displayed. A retry and adaption of the given response is possible as long as the question is not completely correct answered.
 
